@@ -72,7 +72,8 @@ contract SupplyChain {
    Note that the uninitialized Item.State is 0, which is also the index of the ForSale value,
    so checking that Item.State == ForSale is not sufficient to check that an Item is for sale.
    Hint: What item properties will be non-zero when an Item has been added?1   */
-  modifier forSale( uint sku){ require(uint(items[sku].state) == 0); _;}
+  modifier forSale( 
+    uint sku){ require(uint(items[sku].state) == 0 && items[sku].seller != address(0)); _;}
   modifier sold( uint sku){ require(uint(items[sku].state) == 1); _;}
   modifier shipped(uint sku){ require(uint(items[sku].state) == 2); _;}
   modifier received( uint sku){ require(uint(items[sku].state) == 3); _;}
